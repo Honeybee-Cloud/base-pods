@@ -35,7 +35,7 @@ spec:
         - name: MYSQL_USER
           value: nextcloud
         - name: MYSQL_PASSWORD
-          value: nextcloud
+          value: nextcloudpass
         - name: MYSQL_HOST
           value: mysql-server.honeybee
         # Use either an S3 object endpoint or the Ceph backed volume below

@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+configMapGenerator:
+- name: mysql-configmap
+  namespace: honeybee
+  files:
+  - sql/nextcloud-setup.sql
+  - sql/radius-schema.sql
+  - sql/radius-setup.sql
+  - sql/radius-process-radacct.sql

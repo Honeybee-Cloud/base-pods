@@ -1,0 +1,1 @@
+The files in this folder are combined and used to generate a ConfigMap. This config map is given to mysql in order to initialize schemas, users, etc
