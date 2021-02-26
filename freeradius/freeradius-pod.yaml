@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: freeradius-server
+  namespace: honeybee
+spec:
+  ports:
+  - name: auth
+    protocol: UDP
+    port: 1812
+  - name: accounting
+    protocol: UDP
+    port: 1813
+  selector:
+    app: freeradius
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freeradius
+  namespace: honeybee
+spec:
+  selector:
+    matchLabels:
+      app: freeradius
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: freeradius
+    spec:
+      containers:
+      - image: freeradius/freeradius-server:3.0.21-alpine
+        name: freeradius
+        ports:
+        - containerPort: 1812
+          protocol: UDP
+          name: auth
+        - containerPort: 1813
+          protocol: UDP
+          name: accounting

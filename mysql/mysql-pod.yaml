@@ -38,9 +38,14 @@ spec:
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+        - name: mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
       volumes:
         # This volume is backed by a Ceph block device
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-rbd-pvc
           readOnly: false
+      - name: mysql-initdb
+        configMap:
+          name: radius-configmap
